@@ -1,0 +1,31 @@
+#libros: Almacena información de los libros
+#usuarios: Almacena información de los usuarios
+#categorias: Organiza los libros en categorías
+#usuarios_libros: Relaciona usuarios con los libros que han canjeado
+#Libros:
+id (INT, PRIMARY KEY, AUTO_INCREMENT): #Identificador único del libro titulo (VARCHAR): #Título del libro.
+autor (VARCHAR): #Autor del libro.
+categoria_id (INT, FOREIGN KEY): #Relaciona con la tabla de categorías canjeos (INT): #Número de veces que el libro ha sido canjeado
+tiempo lectura (INT): #Tiempo estimado de lectura en minutos
+#Usuarios:
+id (INT, PRIMARY KEY, AUTO_INCREMENT): #Identificador único del usuario nombre (VARCHAR): #Nombre del usuario.
+#Categorías:
+id (INT, PRIMARY KEY, AUTO_INCREMENT): #Identificador único de la categoría nombre (VARCHAR): #Nombre de la categoría (ej. "Matemáticas", "Ciencias")
+#Usuarios_Libros:
+user_id (INT, FOREIGN KEY): #Relaciona con la tabla de usuarios
+book_id (INT, FOREIGN KEY): #Relaciona con la tabla de libros
+PRIMARY KEY (user_id, book_id): #Clave primaria compuesta para asegurar que un usuario no canjee el mismo libro más de una vez
+#Consultando para obtener los libros de un usuario:
+SELECT b.titulo, b.autor
+FROM books b
+JOIN user_books ub ON b.id
+ub.book_id
+WHERE ub.user_id = ?; -- Reemplaza ? con el ID del usuario
+#Consultando para obtener los libros de una categoría:
+SELECT b.titulo, b.autor
+FROM books b
+JOIN categories c ON b.categoria_id = c.id
+WHERE c.nombre = 'Matemáticas'; -- Cambia 'Matemáticas' por la categoría deseada
+# Marvin Leonel Garcia Lemus
+# leogarcia0027@gmail.com
+# Desafio Tecnico Susaeta - Microservicios con Docker Compose

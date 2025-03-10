@@ -1,0 +1,20 @@
+
+# Microservicios 
+version: '3' 
+services:
+  usuarios:
+    image: usuarios-service:latest
+    ports:
+      - "5000:5000"
+  libros:
+    image: libros-service:latest
+    ports:
+      - "5001:5001"
+  recomendaciones:
+    image: recomendaciones-service:latest 
+    ports:
+      - "5002:5002"
+
+// Marvin Leonel Garcia Lemus
+// leogarcia0027@gmail.com
+// Desafio Tecnico Susaeta - Microservicios con Docker Compose
